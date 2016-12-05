@@ -3,7 +3,7 @@
 memory=$(free -m | awk '/Mem:/{print $4}') # check how much free memory is available 
 running=$(/usr/sbin/ipsec status | grep -c -E "1|2|3|4|5|6") #check IPsec status for active connection by counting numbers of 'up's'.
 if [[ ($memory -lt 50) ]] && [ $running -gt 1 ]; then #if mem is less than 50mb and VPN is active
-echo "Not rebooting, VPN active!" | date | mail -s "Memory usage high, NOT rebooting, VPN active!" email@domain.com #warn by sendin email (requires send or mail pckgs)
+echo "Not rebooting, VPN active!" | date | mail -s "Memory usage high, NOT rebooting, VPN active!" email@domain.com #warn by sending email (requires sendmail pckgs)
 fi
 if [[ ($memory -lt 50) ]] && [ $running -lt 1 ]; then  #if mem is less than 50mb and no VPN is not active, reboot device
 echo "Very high RAM usage, forcing automated reboot!" | date | mail -s "Very high RAM usage, forcing reboot!" email@domain.com
